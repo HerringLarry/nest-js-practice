@@ -10,13 +10,12 @@ export class PostsService {
 
     async createPage( createPostDto: CreatePostDto ): Promise<Post> {
         const createdPost = new this.postModel(createPostDto);
-        // process.stdout.write(String(createPostDto.))
-        return await createdPost.save((err) => {
-            process.stdout.write(String(err) + '\n');
-        });
+        // process.stdout.write(String(createPostDto.content));
+        return await createdPost.save();
     }
 
     async findPage( p: number ): Promise<Post> {
-        return await this.postModel.findOne({page: p}).exec();
+        // return await this.postModel.findOne({'page': p}).exec((err, res) => {process.stdout.write(String(res));});
+        return await this.postModel.findOne({'page': p}).exec();
     }
 }

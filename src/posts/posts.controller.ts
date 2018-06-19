@@ -11,12 +11,12 @@ export class PostsController {
     @Post( '/post/' )
     async create(@Body() cto: CreatePostDto, @Response() res ) {
         const note = this.postsService.createPage( cto );
-        return res.status( HttpStatus.CREATED ).send(note);
+        return await res.status( HttpStatus.CREATED ).send(note);
     }
 
     @Get( '/get/:page' )
     async findPage( @Param( 'page' ) page: string, @Response() res ): Promise<CreatePostDto> {
-        const note =  this.postsService.findPage ( Number( page ) );
+        const note =  await this.postsService.findPage ( Number( page ) );
         return res.status( HttpStatus.OK ).json( note );
     }
 }
