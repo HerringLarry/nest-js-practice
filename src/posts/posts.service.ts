@@ -9,13 +9,13 @@ export class PostsService {
     constructor(@Inject('PostModelToken') private readonly postModel: Model<Post>) { }
 
     async createPage( createPostDto: CreatePostDto ): Promise<Post> {
-        const createdPost = new this.postModel(createPostDto);
-        // process.stdout.write(String(createPostDto.content));
-        return await createdPost.save();
+        const query = {'page': createPostDto.page};
+        const update = {'content': createPostDto.content};
+        const options = {upsert: true}; // If it doesn't exist then create it
+        return await this.postModel.findOneAndUpdate( query, update, options );
     }
 
     async findPage( p: number ): Promise<Post> {
-        // return await this.postModel.findOne({'page': p}).exec((err, res) => {process.stdout.write(String(res));});
-        return await this.postModel.findOne({'page': p}).exec();
+        return await this.postModel.findOne( {'page': p} ).exec();
     }
 }
