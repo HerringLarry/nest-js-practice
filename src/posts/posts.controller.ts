@@ -12,7 +12,7 @@ export class PostsController {
             return res.status( HttpStatus.CREATED ).json( result );
         }).catch(error => {
             process.stdout.write(error + '');
-            return res.status( HttpStatus.NOT_MODIFIED)
+            return res.status( HttpStatus.NOT_MODIFIED).json(error);
         });
     }
 
@@ -21,8 +21,7 @@ export class PostsController {
         this.postsService.findPage ( Number( page ) ).then( result => {
             return res.status( HttpStatus.OK ).json( result.content );
         }).catch(error => {
-            process.stdout.write(error + '');
-            return res.status( HttpStatus.NOT_FOUND);
+            return res.status( HttpStatus.NOT_FOUND).json(error);
         });
     }
 }
