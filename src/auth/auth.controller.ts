@@ -14,14 +14,14 @@ export class AuthController {
 
     @Post('/login')
     async login( @Response() res, @Body() email: string, @Body() dto: CreateUserDto ) {
-        const auth = await this.loginService.login(dto.email, dto.password);
+        const auth = await this.loginService.login(dto.email);
         res.status(HttpStatus.OK).json(auth);
     }
 
     @Post('/signup')
     async signup( @Response() res, @Body() dto: CreateUserDto) {
         process.stdout.write('okay');
-        const auth = await this.signupService.signup(dto.email, dto.password);
+        const auth = await this.signupService.signup(dto.email);
         res.status(HttpStatus.OK).json(auth);
     }
 }
