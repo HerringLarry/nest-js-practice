@@ -1,10 +1,10 @@
-import { Connection } from 'mongoose';
-import { UserSchema } from './user.schema';
+// import { Connection } from 'mongoose';
+// import { PostSchema } from '../posts/posts.schema';
 
-export const AuthProviders = [
-  {
-    provide: 'UserModelToken',
-    useFactory: ( connection: Connection ) => connection.model( 'noters', UserSchema ),
-    inject: ['DbConnectionToken'],
-  },
-];
+// export const AuthProviders = [
+//   {
+//     provide: 'PostModelToken',
+//     useFactory: ( connection: Connection ) => connection.model( 'notes', PostSchema ),
+//     inject: ['DbConnectionToken'],
+//   },
+// ];

@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { Post } from './interfaces/post.interface';
 import { CreatePostDto } from './dto/create-posts.dto';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class PostsService {
