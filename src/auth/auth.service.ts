@@ -17,7 +17,7 @@ export class AuthService {
 
   async validateUser(signedUser): Promise<boolean> {
     if (signedUser && signedUser.username) {
-    process.stdout.write('ejejejej')
+    // process.stdout.write('ejejejej');
       return Boolean(this._loginServer.login(signedUser.username));
     }
 

@@ -18,7 +18,7 @@ export class AuthController {
     async login( @Response() res, @Body() email: string, @Body() dto: CreateUserDto ) {
         const auth = await this.loginService.login(dto.email);
         if (auth){
-            return res.status(HttpStatus.OK).json(await this.authService.createToken(auth.email));
+            return res.status(HttpStatus.OK).json(await this.authService.createToken(auth.user));
         }
     }
 

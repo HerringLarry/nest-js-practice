@@ -1,12 +1,23 @@
 import * as mongoose from 'mongoose';
 
-export const PostSchema = new mongoose.Schema({
+const noteSchema = new mongoose.Schema({
     page: {
         type: Number,
-        required: true,
+        default: -1,
     },
     content: {
         type: String,
-        required: false,
+        default: '',
     },
+});
+
+export const PostSchema = new mongoose.Schema({
+    user: {
+        type: String,
+        required: true,
+    },
+    notes: [{
+        type: noteSchema,
+        required: true,
+    }],
 });

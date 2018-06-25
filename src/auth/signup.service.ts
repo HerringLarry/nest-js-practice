@@ -12,10 +12,10 @@ export class SignUpService {
  * SignUp user account
  *******************************************************/
     async signup(email) {
-        const query1 = {'email': email};
+        const query1 = {'user': email};
+        const create = {'user': email, 'notes': [{page: 1, content: ''}, {page: 2, content: ''}, {page: 3, content: ''}, {page: 4, content: ''}, {page: 5, content: ''}]};
         const options = {upsert: true}; // If it doesn't exist then create it
-        const result = await this.postModel.findOneAndUpdate(query1, query1, options);
-        process.stdout.write(email + ' ' + result);
+        const result = await this.postModel.findOneAndUpdate(query1, create, options);
         return result;
     }
 

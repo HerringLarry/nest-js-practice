@@ -9,14 +9,14 @@ export class PostsService {
 
     constructor(@Inject('PostModelToken') private readonly postModel: Model<Post>) { }
 
-    async createPage( createPostDto: CreatePostDto ): Promise<Post> {
-        const query = {'page': createPostDto.page};
-        const update = {'content': createPostDto.content};
-        const options = {upsert: true}; // If it doesn't exist then create it
-        return await this.postModel.findOneAndUpdate( query, update, options );
+    async createPage( createPostDto: CreatePostDto, user: string ): Promise<Post> {
+        process.stdout.write(user + '');
+        const query = {'user': user, 'notes': {'$elemMatch': {page: createPostDto.page}}};
+        const update = {'$set': {'notes.$.page': createPostDto.page, 'notes.$.content': createPostDto.content}};
+        return await this.postModel.update( query, update );
     }
 
-    async findPage( p: number ): Promise<Post> {
-        return await this.postModel.findOne( {'page': p} ).exec();
+    async findPage( p: number, user: string ): Promise<Post> {
+        return await this.postModel.findOne( {'user': user} ).exec();
     }
 }

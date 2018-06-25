@@ -14,7 +14,7 @@ export class LoginService {
  * Basic Login with credentials
  *******************************************************/
     async login(email) {
-      const query = {'email': email};
+      const query = {'user': email};
       const user = await this.postModel.findOne(query);
       if (user){
         process.stdout.write('FOUND');

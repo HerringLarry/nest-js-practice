@@ -9,7 +9,6 @@ import { AuthController } from './auth.controller';
 import { LoginService } from './login.service';
 import { SignUpService } from './signup.service';
 import { AuthHelper } from './auth.helper';
-import { AuthProviders } from './auth.providers';
 import { DatabaseModule } from 'database/database.module';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthService } from './auth.service';
@@ -21,7 +20,7 @@ import { PostProviders } from 'posts/posts.providers';
     controllers: [ AuthController ],
     components: [ AuthHelper  ],
     providers: [
-        LoginService, SignUpService, AuthService, JwtStrategy, 
+        LoginService, SignUpService, AuthService, JwtStrategy,
         ... PostProviders,
     ],
 })
